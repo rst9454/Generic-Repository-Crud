@@ -10,23 +10,29 @@
 - **Entity Framework Core Integration:** Leverages EF Core for data access and manipulation.
 - **Scalability:** Easily extendable for specific entity needs.
 - **Dependency Injection:** Configured for seamless integration with .NET dependency injection.
+- **Font Awesome:** Includes guidance on how to use the Font Awesome library for icons.
+- **SweetAlert2:** Demonstrates how to use SweetAlert2 for enhanced alert dialogs.
+- **Toaster:** Provides instructions on using Toaster to display notifications.
 
-  ### Contact:
-- **GitHub⏭️** https://github.com/rst9454/
-- **Facebook⏭️** https://facebook.com/sunilpandey9454
-- **Linkedin⏭️** https://linkedin.com/in/sunilpandey9454
-- **Website⏭️** https://biharideveloper.com
-- **Instagram** https://instagram.com/sunilpandey9454
-  
+## Contact
+
+For any questions, feedback, or contributions, feel free to connect with me:
+
+- **GitHub:** [rst9454](https://github.com/rst9454/)
+- **Facebook:** [sunilpandey9454](https://facebook.com/sunilpandey9454)
+- **LinkedIn:** [sunilpandey9454](https://linkedin.com/in/sunilpandey9454)
+- **Website:** [biharideveloper.com](https://biharideveloper.com)
+- **Instagram:** [sunilpandey9454](https://instagram.com/sunilpandey9454)
+
 ## Getting Started
 
 ### Prerequisites
 
-- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) (version 6.0 )
+- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) (version 6.0)
 
 ### Installation
 
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/Generic-Repository-Crud.git
+   git clone https://github.com/rst9454/Generic-Repository-Crud.git
