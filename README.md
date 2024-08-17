@@ -36,3 +36,10 @@ For any questions, feedback, or contributions, feel free to connect with me:
 
    ```bash
    git clone https://github.com/rst9454/Generic-Repository-Crud.git
+
+2. **Change the connection string:**
+      "ConnectionStrings": {
+  "DefaultConnection": "Data Source=DESKTOP-C91IL1H\\SQLEXPRESS;Initial Catalog=UsingGenericRepositoryDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"
+}, **Only Data Source Like DESKTOP-C91IL1H\\SQLEXPRESS(Your)**
+    There is no need to create a database. When you perform migration, the database will be created automatically and the tables in the database will also be updated with the help of the update-database command.
+   After that, you will run the application and enjoy a smooth **CRUD (CREATE, READ, UPDATE & DELETE)** operation with toaster notification messages and sweet alert popups.
