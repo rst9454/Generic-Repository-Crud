@@ -1,0 +1,81 @@
+﻿@model IEnumerable<tblEmployee>
+@{
+    ViewData["Title"] = "Employee List";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div class="float-end">
+                <a class="btn btn-sm btn-primary m-2" asp-controller="Employee" asp-action="AddEmployee"><i class="fas fa-user-plus"></i> Add Employee</a>
+            </div>
+            <table class="table table-bordered table-hover table-stripped">
+                <thead>
+                    <tr>
+                        <th class="text-center" width="50px;">Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th width="75px;" class="text-center">Gender</th>
+                        <th>Birth Date</th>
+                        <th>Mother Name</th>
+                        <th>Father Name</th>
+                        <th class="text-center" width="150px;">Operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@item.Id</td>
+                                <td>@item.FirstName</td>
+                                <td>@item.LastName</td>
+                                <td class="text-center">@item.Gender</td>
+                                <td>@item.DOB</td>
+                                <td>@item.MotherName</td>
+                                <td>@item.FatherName</td>
+                                <td class="text-center">
+                                    <a asp-controller="Employee" asp-action="AddEmployee" asp-route-id="@item.Id" class="btn btn-sm btn-warning" title="Edit info"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-sm btn-info" title="View info"><i class="fas fa-eye"></i></a>
+                                    <a class="btn btn-sm btn-danger btn-delete" data-id="@item.Id" title="Delete Record"><i class="fas fa-trash"></i></a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr class="text-center">
+                            <td colspan="8" class="text-warning">No Records Available</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                const employeeId = this.getAttribute('data-id');
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = `/Employee/DeleteEmployee?id=${employeeId}`;
+                    }
+                })
+            });
+        });
+    </script>
+}
+

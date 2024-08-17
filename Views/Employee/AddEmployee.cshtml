@@ -1,0 +1,87 @@
+﻿@model tblEmployee
+@{
+    ViewData["Title"] = "Add Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    /* Custom form styling */
+   
+    .form-label {
+        font-weight: 500;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .btn-block {
+        font-size: 1rem;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+    }
+
+    .shadow-sm {
+        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+    }
+
+
+</style>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-6 p-4 border rounded bg-light shadow-sm">
+            <h4 class="text-center mb-4">@((Model.Id == 0) ? "Add Employee" : "Update Employee")</h4>
+            <form method="post" asp-action="AddEmployee" asp-controller="Employee">
+                <div class="mb-3">
+                    <label asp-for="FirstName" class="form-label"></label>
+                    <input type="text" class="form-control" asp-for="FirstName" placeholder="Enter first name" />
+                    <span class="text-danger" asp-validation-for="FirstName"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="LastName" class="form-label"></label>
+                    <input type="text" class="form-control" asp-for="LastName" placeholder="Enter last name" />
+                    <span class="text-danger" asp-validation-for="LastName"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Gender" class="form-label"></label><br />
+                    <div class="form-check form-check-inline">
+                        <input type="radio" asp-for="Gender" class="form-check-input" value="M" id="genderMale" />
+                        <label class="form-check-label" for="genderMale">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" asp-for="Gender" class="form-check-input" value="F" id="genderFemale" />
+                        <label class="form-check-label" for="genderFemale">Female</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" asp-for="Gender" class="form-check-input" value="O" id="genderOther" />
+                        <label class="form-check-label" for="genderOther">Other</label>
+                    </div>
+                    <br />
+                    <span class="text-danger" asp-validation-for="Gender"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="DOB" class="form-label"></label>
+                    <input type="date" class="form-control" asp-for="DOB" max="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="mm/dd/yyyy" />
+                    <span class="text-danger" asp-validation-for="DOB"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="FatherName" class="form-label"></label>
+                    <input type="text" class="form-control" asp-for="FatherName" placeholder="Enter father's name" />
+                    <span class="text-danger" asp-validation-for="FatherName"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="MotherName" class="form-label"></label>
+                    <input type="text" class="form-control" asp-for="MotherName" placeholder="Enter mother's name" />
+                    <span class="text-danger" asp-validation-for="MotherName"></span>
+                </div>
+                <div class="d-grid">
+                    <input type="submit" class="btn btn-@((Model.Id == 0) ? "primary" : "warning")" value="@((Model.Id == 0) ? "Add Employee" : "Update Employee")" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
