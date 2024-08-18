@@ -15,7 +15,7 @@ namespace Using_GenericRepository_CrudOperation.Controllers
             this.genericService = genericService;
         }
         public async Task<IActionResult> Index()
-        {
+        {//Get the employee list form employee table
             IEnumerable<tblEmployee> employees = await genericService.GetAllAsync<tblEmployee>();
             return View(employees);
         }
