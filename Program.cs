@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Using_GenericRepository_CrudOperation.Data;
+using Using_GenericRepository_CrudOperation.GenericSerivce;
 using Using_GenericRepository_CrudOperation.Models;
 using Using_GenericRepository_CrudOperation.Repository;
 
@@ -11,7 +12,10 @@ builder.Services.AddDbContext<ApplicationContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-builder.Services.AddTransient<IGenericRepository<tblEmployee>, GenericRepository<tblEmployee>>();
+//builder.Services.AddTransient<IGenericRepository<tblEmployee>, GenericRepository<tblEmployee>>();
+
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IGenericService,GenericService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

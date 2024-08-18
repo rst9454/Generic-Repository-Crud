@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
+using Using_GenericRepository_CrudOperation.GenericSerivce;
 using Using_GenericRepository_CrudOperation.Models;
 using Using_GenericRepository_CrudOperation.Repository;
 
@@ -7,15 +8,15 @@ namespace Using_GenericRepository_CrudOperation.Controllers
 {
     public class EmployeeController : Controller
     {
-        private readonly IGenericRepository<tblEmployee> genericRepository;
+        private readonly IGenericService genericService;
 
-        public EmployeeController(IGenericRepository<tblEmployee> genericRepository)
+        public EmployeeController(IGenericService genericService)
         {
-            this.genericRepository = genericRepository;
+            this.genericService = genericService;
         }
         public async Task<IActionResult> Index()
         {
-            IEnumerable<tblEmployee> employees = await genericRepository.GetAllAsync();
+            IEnumerable<tblEmployee> employees = await genericService.GetAllAsync<tblEmployee>();
             return View(employees);
         }
 
@@ -27,7 +28,7 @@ namespace Using_GenericRepository_CrudOperation.Controllers
             }
             else
             {
-                tblEmployee employee = await genericRepository.GetByIdAsync(id.Value);
+                tblEmployee employee = await genericService.GetByIdAsync<tblEmployee>(id.Value);
                 if (employee == null)
                 {
                     return NotFound();
@@ -45,12 +46,12 @@ namespace Using_GenericRepository_CrudOperation.Controllers
                 {
                     if (model.Id == 0)
                     {
-                        await genericRepository.AddAsync(model);
+                        await genericService.AddAsync(model);
                         TempData["success"] = "Employee added successfully.";
                     }
                     else
                     {
-                        await genericRepository.UpdateAsync(model);
+                        await genericService.UpdateAsync(model);
                         TempData["success"] = "Employee updated successfully.";
                     }
                     return RedirectToAction("Index");
@@ -68,12 +69,12 @@ namespace Using_GenericRepository_CrudOperation.Controllers
         {
             try
             {
-                tblEmployee employee = await genericRepository.GetByIdAsync(id);
+                tblEmployee employee = await genericService.GetByIdAsync<tblEmployee>(id);
                 if (employee == null)
                 {
                     return NotFound();
                 }
-                await genericRepository.DeleteAsync(id);
+                await genericService.DeleteAsync<tblEmployee>(id);
                 TempData["success"] = "Employee deleted successfully";
             }
             catch (Exception)
